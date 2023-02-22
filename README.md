@@ -34,6 +34,7 @@ DESCRIPTION
        Linux UDP server, that forwards Fohhn-Net to serial port.
 
 OPTIONS
+
        -t     serial device
 
        -p     udp listen port
