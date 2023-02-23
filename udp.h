@@ -7,21 +7,8 @@
 #ifndef __UDP_H
 #define __UDP_H
 
-#define _GNU_SOURCE
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <time.h>
-#include <fcntl.h>
-#include <signal.h>
+#include <netinet/in.h>
 
 extern struct sockaddr_in cli_addr, serv_addr;
 extern int cli_addr_len;
