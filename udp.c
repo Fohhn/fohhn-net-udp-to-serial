@@ -6,6 +6,11 @@
 
 #include "udp.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+
 struct sockaddr_in cli_addr, serv_addr;
 int cli_addr_len;
 unsigned char udp_rx_buf[UDP_RX_BUF_LEN];
