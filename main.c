@@ -1,4 +1,8 @@
-/* Fohhn-Net */
+/*
+ * Copyright 2023 Fohhn
+ *
+ * licensed under the MIT License, see LICENSE for more information
+ */
 
 #include "main.h"
 
