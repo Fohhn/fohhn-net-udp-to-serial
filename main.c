@@ -1,22 +1,20 @@
-/*
- * Copyright 2023 Fohhn
- *
- * licensed under the MIT License, see LICENSE for more information
- */
+/* Fohhn-Net */
 
 #include "main.h"
 
 #define SERIAL_BUF_LENGTH 515
 
-const char *version_info = "1.5";
+const char *version_info = "1.6";
 
 int main(int argc, char **argv)
 {
   int opt;
   char *tty = NULL;
   int udp_port = 2101;
+  int baud = 19200;
+  int result;
 
-  while ((opt = getopt(argc, argv, "t:p:hV")) != -1)
+  while ((opt = getopt(argc, argv, "t:p:b:hV")) != -1)
     switch (opt)
     {
     case 't':
@@ -24,6 +22,9 @@ int main(int argc, char **argv)
       break;
     case 'p':
       udp_port = atoi(optarg);
+      break;
+    case 'b':
+      baud = atoi(optarg);
       break;
     case 'V':
       printf("%s version %s\n", argv[0], version_info);
@@ -51,7 +52,14 @@ int main(int argc, char **argv)
 
   clear_fdcp_buffers();
 
-  if (init_serial_port(&uart, tty) != 0)
+  result = init_serial_port(&uart, tty, baud);
+
+  if (result == SERIAL_ERROR_BAUDRATE)
+  {
+    printf("no valid baud rate\n");
+    return 1;
+  }
+  else if (result != SERIAL_OK)
   {
     printf("error opening serial device\n");
     return 1;
@@ -59,7 +67,7 @@ int main(int argc, char **argv)
 
   init_udp(&udp_socket, udp_port);
 
-  printf("Starting Fohhn-Net forwarding (fdcp version %s)\n", version_info);
+  printf("Starting Fohhn-Net forwarding at %d baud (fdcp version %s)\n", baud, version_info);
 
   select_loop();
 
@@ -150,6 +158,7 @@ void usage(char *argv0)
   printf("Options:\n");
   printf(" -t serial device\n");
   printf(" -p udp port\n");
+  printf(" -b baud rate\n");
   printf(" -h show help\n");
   printf(" -V show version info\n");
 }
