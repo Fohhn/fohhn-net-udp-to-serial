@@ -12,8 +12,8 @@
 #include <errno.h>
 
 struct sockaddr_in cli_addr, serv_addr;
-int cli_addr_len;
-unsigned char udp_rx_buf[UDP_RX_BUF_LEN];
+socklen_t cli_addr_len;
+uint8_t udp_rx_buf[UDP_RX_BUF_LEN];
 
 void init_udp(int *socket_ptr, int udp_port)
 {

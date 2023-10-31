@@ -6,9 +6,9 @@
 
 #include "fdcp_forward.h"
 
-unsigned char request_buf[REQUEST_BUF_LEN];
-unsigned char reply_buf[REPLY_BUF_LEN];
-unsigned char fdcp_wait;
+uint8_t request_buf[REQUEST_BUF_LEN];
+uint8_t reply_buf[REPLY_BUF_LEN];
+uint8_t fdcp_wait;
 int fdcp_pos;
 
 void clear_fdcp_buffers()
@@ -26,7 +26,7 @@ void reset_fdcp()
   fdcp_pos = 0;
 }
 
-int feed_request_data(unsigned char *data, int len)
+int feed_request_data(uint8_t *data, int len)
 {
   int result = 0;
 
@@ -36,7 +36,6 @@ int feed_request_data(unsigned char *data, int len)
     {
       reset_fdcp();
       memcpy(request_buf, data, len);
-      // printf("received %d bytes from %s:%u\n", udp_rx_len, inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
       result = len;
     }
   }
@@ -44,7 +43,7 @@ int feed_request_data(unsigned char *data, int len)
   return result;
 }
 
-int feed_reply_data(unsigned char *data, int len)
+int feed_reply_data(uint8_t *data, int len)
 {
   int i;
   int reply_len = 0;
@@ -60,7 +59,6 @@ int feed_reply_data(unsigned char *data, int len)
         if (reply_buf[fdcp_pos] == FDCP_END_BYTE)
         {
           reply_len = fdcp_pos + 1;
-          // printf("reply ready %d\n", reply_len);
           break;
         }
 
