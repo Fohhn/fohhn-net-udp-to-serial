@@ -14,7 +14,7 @@ Fohhn-Net UDP to serial forwarding (built-in or RS-485).
 Use 'make' to build the utility.
 
 ## Requirements
-Add user to group 'dialout' to access serial ports.
+Add user to group 'dialout' to access serial ports on linux.
 ```shell 
 usermod -a -G dialout username
 ```
