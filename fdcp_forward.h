@@ -10,22 +10,23 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdint.h>
 
-#define REQUEST_BUF_LEN 522
+#define REQUEST_BUF_LEN 523
 #define REPLY_BUF_LEN 515
 
 #define FDCP_START_BYTE 0xF0
 #define FDCP_END_BYTE 0xF0
 
-extern unsigned char request_buf[REQUEST_BUF_LEN];
-extern unsigned char reply_buf[REPLY_BUF_LEN];
+extern uint8_t request_buf[REQUEST_BUF_LEN];
+extern uint8_t reply_buf[REPLY_BUF_LEN];
 
 void clear_fdcp_buffers();
 void reset_fdcp();
-int feed_request_data(unsigned char *data, int len);
-int feed_reply_data(unsigned char *data, int len);
+int feed_request_data(uint8_t *data, int len);
+int feed_reply_data(uint8_t *data, int len);
 
-extern unsigned char fdcp_wait;
+extern uint8_t fdcp_wait;
 extern int fdcp_pos;
 
 #endif // __FDCP_FORWARD_H

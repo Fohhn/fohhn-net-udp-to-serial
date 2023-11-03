@@ -8,7 +8,7 @@
 
 #define SERIAL_BUF_LENGTH 515
 
-const char *version_info = "1.6";
+const char *version_info = "1.7";
 
 int main(int argc, char **argv)
 {
@@ -125,7 +125,7 @@ void select_loop()
 
 void serial_receive()
 {
-  unsigned char serial_buf[SERIAL_BUF_LENGTH];
+  uint8_t serial_buf[SERIAL_BUF_LENGTH];
   int len;
 
   len = read_from_serial_port(&uart, serial_buf, SERIAL_BUF_LENGTH);
