@@ -33,9 +33,14 @@ DESCRIPTION
 
        Linux UDP server, that forwards Fohhn-Net to serial port.
 
+       Most devices use the default serial port speed of 19200 baud only.
+       Devices released 2023 and later use 115200 baud over the usb port.
+
 OPTIONS
 
        -t     serial device
+
+       -b     baud rate 
 
        -p     udp listen port
 
